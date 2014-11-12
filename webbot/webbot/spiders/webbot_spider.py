@@ -4,7 +4,7 @@ from scrapy.spider import Spider
 from scrapy.selector import Selector
 from webbot.items import WebbotItem
 
-class AmazonSpider(Spider):
+class WebbotSpider(Spider):
     name = "webbot"
     allowed_domains = ["amazon.co.jp"]
     start_urls = [
@@ -16,10 +16,10 @@ class AmazonSpider(Spider):
         with open(filename, 'wb') as f:
             f.write(response.body)
         sel = Selector(response)
-        mechans = sel.xpath('//a/span[@class="bld lrg red"]/text()')
+        mechans = sel.xpath('//a/span[@class="a-size-base a-color-price s-price a-text-bold"]/text()')
         items = []
         for mechan in mechans:
             item = WebbotItem()
-            item['price'] = mechan.extract() 
+            item['price'] = mechan.re('([0-9]),([0-9][0-9][0-9])') 
             items.append(item)
         return items

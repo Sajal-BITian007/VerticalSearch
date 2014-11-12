@@ -14,4 +14,4 @@ SPIDER_MODULES = ['webbot.spiders']
 NEWSPIDER_MODULE = 'webbot.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'amazon (+http://www.yourdomain.com)'
+#USER_AGENT = 'webbot (+http://www.yourdomain.com)'
